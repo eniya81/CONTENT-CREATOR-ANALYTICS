@@ -1,0 +1,87 @@
+# ==============================
+# Mentor Repository
+# ==============================
+Mentor-Repo/
+
+# ==============================
+# Environment Variables & Secrets
+# ==============================
+.env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
+
+# ==============================
+# Python Virtual Environments
+# ==============================
+venv/
+.venv/
+env/
+ENV/
+
+# ==============================
+# Python Cache Files
+# ==============================
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ==============================
+# Python Build Files
+# ==============================
+build/
+dist/
+*.egg-info/
+
+# ==============================
+# Frontend Dependencies
+# ==============================
+node_modules/
+frontend/node_modules/
+
+# ==============================
+# Frontend Build Files
+# ==============================
+frontend/dist/
+frontend/build/
+
+# ==============================
+# IDE & Editor Files
+# ==============================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ==============================
+# Operating System Files
+# ==============================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ==============================
+# Logs
+# ==============================
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# ==============================
+# Local Database Files
+# ==============================
+*.db
+*.sqlite
+*.sqlite3
+
+# ==============================
+# Coverage Reports
+# ==============================
+htmlcov/
+.coverage
+coverage.xml
