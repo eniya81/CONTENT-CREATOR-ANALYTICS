@@ -1,5 +1,5 @@
 import {
-  BrowserRouter,
+  HashRouter,
   Routes,
   Route,
 } from "react-router-dom";
@@ -38,53 +38,21 @@ function DashboardLayout() {
 
             <Routes>
 
-              {/* Dashboard */}
-              <Route
-                path="/"
-                element={<Dashboard />}
-              />
+              <Route path="/" element={<Dashboard />} />
 
-              {/* Content Analytics */}
-              <Route
-                path="/content"
-                element={<ContentAnalytics />}
-              />
+              <Route path="/content" element={<ContentAnalytics />} />
 
-              {/* Audience Analytics */}
-              <Route
-                path="/audience"
-                element={<AudienceAnalytics />}
-              />
+              <Route path="/audience" element={<AudienceAnalytics />} />
 
-              {/* Growth & Trends */}
-              <Route
-                path="/growth"
-                element={<GrowthTrends />}
-              />
+              <Route path="/growth" element={<GrowthTrends />} />
 
-              {/* Revenue */}
-              <Route
-                path="/revenue"
-                element={<Revenue />}
-              />
+              <Route path="/revenue" element={<Revenue />} />
 
-              {/* Sponsorships */}
-              <Route
-                path="/sponsorships"
-                element={<Sponsorships />}
-              />
+              <Route path="/sponsorships" element={<Sponsorships />} />
 
-              {/* Notifications */}
-              <Route
-                path="/notifications"
-                element={<Notifications />}
-              />
+              <Route path="/notifications" element={<Notifications />} />
 
-              {/* Reports */}
-              <Route
-                path="/reports"
-                element={<Reports />}
-              />
+              <Route path="/reports" element={<Reports />} />
 
             </Routes>
 
@@ -101,7 +69,7 @@ function DashboardLayout() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
 
       <Routes>
 
@@ -119,7 +87,7 @@ function App() {
 
       </Routes>
 
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
