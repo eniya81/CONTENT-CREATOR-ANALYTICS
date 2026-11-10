@@ -17,63 +17,35 @@ from app.routers.sponsorship import router as sponsorship_router
 from app.routers.notifications import router as notifications_router
 from app.routers.reports import router as reports_router
 
-
 app = FastAPI(
     title="Creator Analytics Content Performance Dashboard"
 )
-
-
-# --------------------------------------------------
-# CORS CONFIGURATION
-# --------------------------------------------------
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
+        "https://creator-analytics-frontend.onrender.com",
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
-# --------------------------------------------------
-# API ROUTERS
-# --------------------------------------------------
-
 app.include_router(user_router)
-
 app.include_router(auth_router)
-
 app.include_router(content_router)
-
 app.include_router(analytics_router)
-
-# Audience CRUD routes
 app.include_router(audience_router)
-
-# Audience Analytics routes
 app.include_router(audience_analytics_router)
-
 app.include_router(social_router)
-
 app.include_router(revenue_router)
-
 app.include_router(sponsorship_router)
-
 app.include_router(notifications_router)
-
 app.include_router(reports_router)
 
 
-# --------------------------------------------------
-# ROOT ENDPOINT
-# --------------------------------------------------
-
 @app.get("/")
 def root():
-    return {
-        "message": "API is running!"
-    }
+    return {"message": "API is running!"}
