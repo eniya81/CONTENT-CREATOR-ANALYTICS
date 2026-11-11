@@ -1,6 +1,13 @@
 import axios from "axios";
 
-const API_BASE_URL = "https://content-creator-analytics-8z1j.vercel.app";
+// Automatically select the backend based on the frontend environment
+const isLocalhost =
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1";
+
+const API_BASE_URL = isLocalhost
+  ? "http://127.0.0.1:8000"
+  : "https://content-creator-analytics-8z1j.vercel.app";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -9,6 +16,7 @@ const api = axios.create({
   },
 });
 
+// Attach authentication token to requests
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("access_token");
@@ -22,14 +30,15 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
+// Handle authentication errors
 api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem("access_token");
 
-      if (window.location.pathname !== "/login") {
-        window.location.href = "/login";
+      if (window.location.hash !== "#/login") {
+        window.location.hash = "#/login";
       }
     }
 
