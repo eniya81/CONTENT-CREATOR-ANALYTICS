@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
+const API_BASE_URL = "https://content-creator-analytics-8z1j.vercel.app";
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -10,7 +9,6 @@ const api = axios.create({
   },
 });
 
-// Add JWT token automatically to authenticated requests
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("access_token");
@@ -24,7 +22,6 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// Handle expired/invalid authentication
 api.interceptors.response.use(
   (response) => response,
   (error) => {
