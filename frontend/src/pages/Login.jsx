@@ -1,7 +1,7 @@
+
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
-import api from "../services/api";
 import { useLocation, useNavigate, Link } from "react-router-dom";
+import api from "../services/api";
 
 function Login() {
   const navigate = useNavigate();
@@ -9,12 +9,10 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  const redirectPath =
-    location.state?.from?.pathname || "/";
+  const redirectPath = location.state?.from?.pathname || "/";
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,37 +22,24 @@ function Login() {
       setError("");
 
       const formData = new URLSearchParams();
-
       formData.append("username", email);
       formData.append("password", password);
 
-      const response = await api.post(
-        "/auth/login",
-        formData,
-        {
-          headers: {
-            "Content-Type":
-              "application/x-www-form-urlencoded",
-          },
-        }
-      );
+      const response = await api.post("/auth/login", formData, {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      });
 
       const token = response.data?.access_token;
 
       if (!token) {
-        throw new Error(
-          "Login succeeded but no access token was returned."
-        );
+        throw new Error("Login succeeded but no access token was returned.");
       }
 
-      localStorage.setItem(
-        "access_token",
-        token
-      );
+      localStorage.setItem("access_token", token);
 
-      navigate(redirectPath, {
-        replace: true,
-      });
+      navigate(redirectPath, { replace: true });
     } catch (err) {
       console.error("Login failed:", err);
 
@@ -70,14 +55,10 @@ function Login() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#0a0a0a] px-4 text-white">
       <div className="w-full max-w-md">
-
         {/* Logo */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold tracking-tight">
-            Creator
-            <span className="text-purple-500">
-              IQ
-            </span>
+            Creator<span className="text-purple-500">IQ</span>
           </h1>
 
           <p className="mt-2 text-sm text-gray-500">
@@ -99,16 +80,11 @@ function Login() {
 
           {error && (
             <div className="mb-5 rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3">
-              <p className="text-sm text-red-400">
-                {error}
-              </p>
+              <p className="text-sm text-red-400">{error}</p>
             </div>
           )}
 
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email */}
             <div>
               <label
@@ -122,9 +98,7 @@ function Login() {
                 id="email"
                 type="email"
                 value={email}
-                onChange={(event) =>
-                  setEmail(event.target.value)
-                }
+                onChange={(event) => setEmail(event.target.value)}
                 placeholder="Enter your email"
                 required
                 autoComplete="email"
@@ -145,9 +119,7 @@ function Login() {
                 id="password"
                 type="password"
                 value={password}
-                onChange={(event) =>
-                  setPassword(event.target.value)
-                }
+                onChange={(event) => setPassword(event.target.value)}
                 placeholder="Enter your password"
                 required
                 autoComplete="current-password"
@@ -161,17 +133,20 @@ function Login() {
               disabled={loading}
               className="w-full rounded-lg bg-purple-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-purple-500 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading
-                ? "Signing in..."
-                : "Sign In"}
+              {loading ? "Signing in..." : "Sign In"}
             </button>
           </form>
+
+          {/* Registration Link */}
           <p className="mt-5 text-center text-sm text-gray-400">
-  Don't have an account?{" "}
-  <Link to="/register" className="text-purple-400 hover:text-purple-300">
-    Create Account
-  </Link>
-</p>
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="text-purple-400 hover:text-purple-300"
+            >
+              Create Account
+            </Link>
+          </p>
         </div>
 
         <p className="mt-5 text-center text-xs text-gray-600">
